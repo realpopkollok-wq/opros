@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Опрос: Домашнее насилие — осведомлённость</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f2f4f8;
+            color: #1a2a3a;
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            padding: 30px 25px 40px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            border-left: 5px solid #2c5f8a;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: #1e3a5f;
+        }
+
+        .subhead {
+            color: #4a627a;
+            margin-bottom: 30px;
+            padding-left: 25px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        .block {
+            margin-bottom: 35px;
+            background: #ffffff;
+            border: 1px solid #e9edf2;
+            border-radius: 16px;
+            padding: 20px 20px 10px 20px;
+            transition: box-shadow 0.1s;
+        }
+
+        .block-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5f8a;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dee4ec;
+        }
+
+        .question {
+            margin-bottom: 28px;
+            padding-bottom: 8px;
+        }
+
+        .question-text {
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: #1e2f3e;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .option-btn {
+            background: #f1f5f9;
+            border: 1px solid #cfdde9;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #1e3a5f;
+            font-family: inherit;
+        }
+
+        .option-btn:hover {
+            background: #e2eaf3;
+            border-color: #9bb0c2;
+        }
+
+        .option-btn.active {
+            background: #2c5f8a;
+            border-color: #2c5f8a;
+            color: white;
+        }
+
+        .error-marker {
+            font-size: 0.75rem;
+            color: #c2410c;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .submit-area {
+            margin-top: 30px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 30px;
+        }
+
+        .submit-btn {
+            background: #2c5f8a;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn:hover {
+            background: #1e4668;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 12px;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        .success {
+            background: #e0f2e9;
+            color: #166534;
+            border-left: 4px solid #15803d;
+        }
+
+        .error {
+            background: #ffe6e5;
+            color: #9b2c1d;
+            border-left: 4px solid #c2410c;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #7e8c9e;
+            margin-top: 25px;
+            border-top: 1px solid #edf2f7;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 18px 30px;
+            }
+            .option-btn {
+                padding: 6px 16px;
+                font-size: 0.85rem;
+            }
+            .block-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Осведомлённость о домашнем насилии</h1>
+    <div class="subhead">Опрос для базы кейсов, сборника законов и учебных задач</div>
+
+    <form id="surveyForm">
+        <!-- БЛОК 1 -->
+        <div class="block">
+            <div class="block-title">Блок 1. Распознавание видов насилия (для базы кейсов)</div>
+            
+            <div class="question" data-q="q1">
+                <div class="question-text">1. Умеете ли вы четко отличать психологическое насилие (газлайтинг, тотальный контроль) от обычного семейного конфликта?</div>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="Да">Да</button>
+                    <button type="button" class="option-btn" data-value="Нет">Нет</button>
+                    <button type="button" class="option-btn" data-value="Затрудняюсь ответить">Затрудняюсь ответить</button>
+                </div>
+                <div class="error-marker">Выберите ответ</div>
+            </div>
+
+            <div class="question" data-q="q2">
+                <div class="question-text">2. Считаете ли вы экономическое давление (например, запрет работать или учиться) одной из форм домашнего насилия?</div>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="Да">Да</button>
+                    <button type="button" class="option-btn" data-value="Нет">Нет</button>
+                    <button type="button" class="option-btn" data-value="Затрудняюсь ответить">Затрудняюсь ответить</button>
+                </div>
+                <div class="error-marker">Выберите ответ</div>
+            </div>
+
+            <div class="question" data-q="q3">
+                <div class="question-text">3. Знаете ли вы, какие признаки в поведении ребенка могут открыто указывать на то, что он подвергается жестокому обращению дома?</div>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="Да">Да</button>
+                    <button type="button" class="option-btn" data-value="Нет">Нет</button>
+                    <button type="button" class="option-btn" data-value="Затрудняюсь ответить">Затрудняюсь ответить</button>
+                </div>
+                <div class="error-marker">Выберите ответ</div>
+            </div>
+        </div>
+
+        <!-- БЛОК 2 -->
+        <div class="block">
+            <div class="block-title">Блок 2. Нормативно-правовая база (для сборника законов)</div>
+
+            <div class="question" data-q="q4">
+                <div class="question-text">4. Знаете ли вы, какие статьи Уголовного или Административного кодекса РФ защищают права пострадавших от домашнего насилия?</div>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="Да">Да</button>
+                    <button type="button" class="option-btn" data-value="Нет">Нет</button>
+                    <button type="button" class="option-btn" data-value="Затрудняюсь ответить">Затрудняюсь ответить</button>
+                </div>
+                <div class="error-marker">Выберите ответ</div>
+            </div>
+
+            <div class="question" data-q="q5">
+                <div class="question-text">5. Известны ли вам юридические права несовершеннолетнего ребенка в ситуации, когда агрессором выступает один из родителей?</div>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="Да">Да</button>
+                    <button type="button" class="option-btn" data-value="Нет">Нет</button>
+                    <button type="button" class="option-btn" data-value="Затрудняюсь ответить">Затрудняюсь ответить</button>
+                </div>
+                <div class="error-marker">Выберите ответ</div>
+            </div>
+        </div>
+
+        <!-- БЛОК 3 -->
+        <div class="block">
+            <div class="block-title">Блок 3. Практические навыки и реагирование (для учебных задач)</div>
+
+            <div class="question" data-q="q6">
+                <div class="question-text">6. Знаете ли вы пошаговый алгоритм действий, если лично столкнетесь с проявлением насилия или жестокого обращения?</div>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="Да">Да</button>
+                    <button type="button" class="option-btn" data-value="Нет">Нет</button>
+                    <button type="button" class="option-btn" data-value="Затрудняюсь ответить">Затрудняюсь ответить</button>
+                </div>
+                <div class="error-marker">Выберите ответ</div>
+            </div>
+
+            <div class="question" data-q="q7">
+                <div class="question-text">7. Известны ли вам адреса действующих кризисных центров или телефоны служб экстренной помощи в Кировской области?</div>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="Да">Да</button>
+                    <button type="button" class="option-btn" data-value="Нет">Нет</button>
+                    <button type="button" class="option-btn" data-value="Затрудняюсь ответить">Затрудняюсь ответить</button>
+                </div>
+                <div class="error-marker">Выберите ответ</div>
+            </div>
+
+            <div class="question" data-q="q8">
+                <div class="question-text">8. Готовы ли вы изучать сборник практических задач и кейсов, чтобы научиться правильно реагировать на такие ситуации?</div>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="Да">Да</button>
+                    <button type="button" class="option-btn" data-value="Нет">Нет</button>
+                    <button type="button" class="option-btn" data-value="Затрудняюсь ответить">Затрудняюсь ответить</button>
+                </div>
+                <div class="error-marker">Выберите ответ</div>
+            </div>
+        </div>
+
+        <div class="submit-area">
+            <button type="button" id="submitBtn" class="submit-btn">Отправить ответы</button>
+            <div id="formMessage" class="message"></div>
+        </div>
+    </form>
+    <footer>Опрос анонимный. Результаты сохраняются для аналитики.</footer>
+</div>
+
+<script>
+    // ---- ЗАМЕНИТЕ ЭТУ ССЫЛКУ ПОСЛЕ НАСТРОЙКИ GOOGLE ТАБЛИЦЫ ----
+    const GOOGLE_SCRIPT_URL = 'ВАША_ССЫЛКА_НА_GOOGLE_APPS_SCRIPT';
+
+    // Состояние ответов
+    let answers = {
+        q1: null, q2: null, q3: null,
+        q4: null, q5: null,
+        q6: null, q7: null, q8: null
+    };
+
+    // Активация кнопок выбора
+    const questions = document.querySelectorAll('.question');
+    questions.forEach(questionDiv => {
+        const btns = questionDiv.querySelectorAll('.option-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const value = btn.getAttribute('data-value');
+                const qName = questionDiv.getAttribute('data-q');
+                
+                // Убираем активный класс у всех кнопок в этом вопросе
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Сохраняем ответ
+                if (answers.hasOwnProperty(qName)) {
+                    answers[qName] = value;
+                }
+                
+                // Скрываем ошибку, если была
+                const errorSpan = questionDiv.querySelector('.error-marker');
+                if (errorSpan) errorSpan.style.display = 'none';
+            });
+        });
+    });
+
+    // Проверка заполнения всех вопросов
+    function isAllAnswered() {
+        for (let key in answers) {
+            if (answers[key] === null) return false;
+        }
+        return true;
+    }
+
+    // Показать ошибки по незаполненным вопросам
+    function showMissingErrors() {
+        let allOk = true;
+        questions.forEach(questionDiv => {
+            const qName = questionDiv.getAttribute('data-q');
+            const errorSpan = questionDiv.querySelector('.error-marker');
+            if (answers[qName] === null) {
+                if (errorSpan) errorSpan.style.display = 'block';
+                allOk = false;
+            } else {
+                if (errorSpan) errorSpan.style.display = 'none';
+            }
+        });
+        return allOk;
+    }
+
+    // Отправка данных в Google Таблицу
+    async function sendToGoogleSheets(data) {
+        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwDcs8U5p3t5g-K6gEUPJ7xXcyVUuYb8h22uJtHMq1dfJBLnSJPMdZZ7kHzAakrD2w9QA/exec') {
+            console.warn('Google Script URL не настроен');
+            return { success: false, message: 'Ссылка на Google Таблицу не настроена. Проверьте инструкцию.' };
+        }
+        
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', 
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            // из-за no-cors нельзя прочитать ответ, но запрос уйдёт
+            return { success: true, message: 'Спасибо! Ваши ответы сохранены.' };
+        } catch (error) {
+            console.error('Ошибка отправки:', error);
+            return { success: false, message: 'Ошибка соединения. Попробуйте ещё раз.' };
+        }
+    }
+
+    // Обработка отправки
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+        const allFilled = showMissingErrors();
+        if (!allFilled) {
+            const msgDiv = document.getElementById('formMessage');
+            msgDiv.className = 'message error';
+            msgDiv.style.display = 'block';
+            msgDiv.innerText = 'Пожалуйста, ответьте на все вопросы перед отправкой.';
+            return;
+        }
+
+        // Добавляем метаданные: дата и время
+        const payload = {
+            timestamp: new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' }),
+            ...answers
+        };
+
+        // Отключаем кнопку, чтобы не дублировали
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Отправка...';
+
+        const result = await sendToGoogleSheets(payload);
+        
+        const msgDiv = document.getElementById('formMessage');
+        msgDiv.style.display = 'block';
+        if (result.success) {
+            msgDiv.className = 'message success';
+            msgDiv.innerText = result.message;
+            // Не очищаем форму, чтобы человек мог видеть свои ответы.
+            // Но можно оставить активные выбранные варианты.
+        } else {
+            msgDiv.className = 'message error';
+            msgDiv.innerText = result.message || 'Ошибка при отправке. Проверьте соединение.';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Отправить ответы';
+        }
+    });
+</script>
+</body>
+</html>
